@@ -1,0 +1,35 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://src/scripts/JumpLocation.gd" type="Script" id=1]
+[ext_resource path="res://assets/target1.png" type="Texture" id=2]
+[ext_resource path="res://assets/target9.png" type="Texture" id=3]
+[ext_resource path="res://assets/target8.png" type="Texture" id=4]
+[ext_resource path="res://assets/target7.png" type="Texture" id=5]
+[ext_resource path="res://assets/target2.png" type="Texture" id=6]
+[ext_resource path="res://assets/target3.png" type="Texture" id=7]
+[ext_resource path="res://assets/target4.png" type="Texture" id=8]
+[ext_resource path="res://assets/target5.png" type="Texture" id=9]
+[ext_resource path="res://assets/target6.png" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "next",
+"speed": 10.0
+} ]
+
+[node name="JumpLocation" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "next"

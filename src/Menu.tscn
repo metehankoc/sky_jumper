@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/BackgroundTitle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/scripts/Menu.gd" type="Script" id=2]
+[ext_resource path="res://musics/button.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/aboutbutton1.png" type="Texture" id=4]
+[ext_resource path="res://assets/aboutbutton2.png" type="Texture" id=5]
+[ext_resource path="res://assets/playbutton1.png" type="Texture" id=6]
+[ext_resource path="res://assets/playbutton2.png" type="Texture" id=7]
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.720169
+margin_top = 0.365726
+margin_right = 0.720154
+margin_bottom = 0.365723
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+play_scene = "res://src/LevelSelect.tscn"
+
+[node name="PlayButton" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -48.0
+margin_top = 2.0
+margin_right = 48.0
+margin_bottom = 20.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AboutButton" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -48.7202
+margin_top = 36.0
+margin_right = 47.2799
+margin_bottom = 71.6343
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -20.0
+
+[node name="Background" parent="." instance=ExtResource( 1 )]
+[connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="AboutButton" to="." method="_on_AboutButton_pressed"]

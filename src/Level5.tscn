@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/Exit.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/JumpLocation.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Char.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Map.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Bayrak.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/MovingPlatform.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Spawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Background.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/fonts/monogram_dynamicfont.tres" type="DynamicFont" id=9]
+
+[node name="Level5" type="Node2D"]
+
+[node name="Char" parent="." instance=ExtResource( 3 )]
+position = Vector2( 88, 72 )
+
+[node name="Map" parent="." instance=ExtResource( 4 )]
+tile_data = PoolIntArray( 65544, 0, 0, 65545, 0, 1, 65546, 0, 2, 65574, 1, 0, 65575, 1, 1, 65576, 1, 2, 65592, 0, 0, 65593, 0, 1, 65594, 0, 2, 196607, 1, 0, 131072, 1, 2, 131080, 0, 131072, 131081, 0, 131073, 131082, 0, 131074, 131087, 1, 0, 131088, 1, 2, 131093, 1, 0, 131094, 1, 2, 131104, 1, 0, 131105, 1, 2, 131110, 1, 65536, 131111, 1, 65537, 131112, 1, 65538, 131118, 1, 0, 131119, 1, 2, 131128, 0, 131072, 131129, 0, 131073, 131130, 0, 131074, 262143, 1, 131072, 196608, 1, 131074, 196612, 1, 0, 196613, 1, 1, 196614, 1, 2, 196623, 1, 131072, 196624, 1, 131074, 196629, 1, 131072, 196630, 1, 131074, 196640, 1, 131072, 196641, 1, 131074, 196646, 1, 131072, 196647, 1, 131073, 196648, 1, 131074, 196654, 1, 131072, 196655, 1, 131074, 196660, 1, 0, 196661, 1, 1, 196662, 1, 2, 262148, 1, 65536, 262149, 1, 65537, 262150, 1, 65538, 262196, 1, 65536, 262197, 1, 65537, 262198, 1, 65538, 327684, 1, 131072, 327685, 1, 131073, 327686, 1, 131074, 327715, 1, 0, 327716, 1, 2, 327732, 1, 131072, 327733, 1, 131073, 327734, 1, 131074, 393226, 1, 0, 393227, 1, 1, 393228, 1, 2, 393239, 1, 0, 393240, 1, 1, 393241, 1, 1, 393242, 1, 2, 393251, 1, 65536, 393252, 1, 65538, 393274, 1, 0, 393275, 1, 1, 393276, 1, 2, 458762, 1, 131072, 458763, 1, 131073, 458764, 1, 131074, 458775, 1, 131072, 458776, 1, 131073, 458777, 1, 131073, 458778, 1, 131074, 458787, 1, 131072, 458788, 1, 131074, 458810, 1, 131072, 458811, 1, 131073, 458812, 1, 131074 )
+
+[node name="JumpPoints" type="Node2D" parent="."]
+
+[node name="JumpLocation" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 184, 112 )
+
+[node name="JumpLocation2" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 256, 48 )
+
+[node name="JumpLocation3" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 352, 48 )
+
+[node name="JumpLocation4" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 400, 112 )
+
+[node name="JumpLocation5" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 528, 48 )
+
+[node name="JumpLocation6" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 576, 104 )
+
+[node name="JumpLocation7" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 632, 40 )
+
+[node name="JumpLocation8" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 752, 48 )
+
+[node name="JumpLocation9" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 856, 72 )
+
+[node name="Exit" parent="." instance=ExtResource( 1 )]
+position = Vector2( 864, 72 )
+next_scene = "res://src/Level5Post.tscn"
+
+[node name="Bayrak" parent="." instance=ExtResource( 5 )]
+position = Vector2( 40, 72 )
+
+[node name="Bayrak2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 800, 72 )
+
+[node name="MovingPlatform" parent="." instance=ExtResource( 6 )]
+position = Vector2( 304, 16 )
+
+[node name="MovingPlatform2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 448, 80 )
+rotation = 3.14159
+
+[node name="Spawner" parent="." instance=ExtResource( 7 )]
+position = Vector2( 480, 24 )
+
+[node name="Spawner2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 576, 24 )
+
+[node name="Spawner3" parent="." instance=ExtResource( 7 )]
+position = Vector2( 632, 120 )
+rotation = 4.71239
+activation_time = 1.5
+
+[node name="Background" parent="." instance=ExtResource( 8 )]
+
+[node name="Label" type="Label" parent="."]
+margin_left = 128.0
+margin_top = 16.0
+margin_right = 192.0
+margin_bottom = 59.0
+rect_scale = Vector2( 0.75, 0.75 )
+custom_fonts/font = ExtResource( 9 )
+text = "Loop 5
+starts?"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 896.0
+margin_top = 16.0
+margin_right = 960.0
+margin_bottom = 59.0
+rect_scale = Vector2( 0.75, 0.75 )
+custom_fonts/font = ExtResource( 9 )
+text = "Loop 6
+will beg-"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

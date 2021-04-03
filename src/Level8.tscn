@@ -1,0 +1,180 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://src/Exit.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/JumpLocation.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Char.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Map.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Bayrak.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Spawner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Laser.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Enemy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Background.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/fonts/monogram_dynamicfont.tres" type="DynamicFont" id=10]
+
+[node name="Level8" type="Node2D"]
+
+[node name="Char" parent="." instance=ExtResource( 3 )]
+position = Vector2( 88, 72 )
+
+[node name="Map" parent="." instance=ExtResource( 4 )]
+tile_data = PoolIntArray( 65544, 0, 0, 65545, 0, 1, 65546, 0, 2, 65553, 1, 0, 65554, 1, 1, 65555, 1, 1, 65556, 1, 1, 65557, 1, 2, 65564, 1, 0, 65565, 1, 1, 65566, 1, 1, 65567, 1, 2, 65574, 1, 0, 65575, 1, 1, 65576, 1, 1, 65577, 1, 2, 65610, 0, 0, 65611, 0, 1, 65612, 0, 2, 196607, 1, 0, 131072, 1, 2, 131080, 0, 131072, 131081, 0, 131073, 131082, 0, 131074, 131087, 1, 0, 131088, 1, 1, 131089, 1, 131076, 131090, 1, 131073, 131091, 1, 131073, 131092, 1, 131073, 131093, 1, 131074, 131100, 1, 131072, 131101, 1, 131073, 131102, 1, 131073, 131103, 1, 131074, 131110, 1, 131072, 131111, 1, 131073, 131112, 1, 131073, 131113, 1, 131074, 131133, 1, 0, 131134, 1, 2, 131137, 1, 0, 131138, 1, 2, 131146, 0, 131072, 131147, 0, 131073, 131148, 0, 131074, 262143, 1, 131072, 196608, 1, 131074, 196612, 1, 0, 196613, 1, 1, 196614, 1, 2, 196623, 1, 131072, 196624, 1, 131073, 196625, 1, 131074, 196669, 1, 131072, 196670, 1, 131074, 196673, 1, 131072, 196674, 1, 131074, 196678, 1, 0, 196679, 1, 1, 196680, 1, 2, 262148, 1, 65536, 262149, 1, 65537, 262150, 1, 65538, 262214, 1, 65536, 262215, 1, 65537, 262216, 1, 65538, 327684, 1, 131072, 327685, 1, 131073, 327686, 1, 131074, 327725, 1, 0, 327726, 1, 1, 327727, 1, 1, 327728, 1, 1, 327729, 1, 1, 327730, 1, 1, 327731, 1, 1, 327732, 1, 1, 327733, 1, 1, 327734, 1, 1, 327735, 1, 2, 327750, 1, 131072, 327751, 1, 131073, 327752, 1, 131074, 393226, 1, 0, 393227, 1, 1, 393228, 1, 2, 393239, 1, 0, 393240, 1, 1, 393241, 1, 1, 393242, 1, 2, 393249, 1, 0, 393250, 1, 1, 393251, 1, 1, 393252, 1, 2, 393259, 1, 0, 393260, 1, 1, 393261, 1, 65540, 393262, 1, 65537, 393263, 1, 65537, 393264, 1, 65537, 393265, 1, 65537, 393266, 1, 65537, 393267, 1, 65537, 393268, 1, 65537, 393269, 1, 65537, 393270, 1, 65537, 393271, 1, 65539, 393272, 1, 1, 393273, 1, 2, 393292, 1, 0, 393293, 1, 1, 393294, 1, 2, 458762, 1, 131072, 458763, 1, 131073, 458764, 1, 131074, 458775, 1, 131072, 458776, 1, 131073, 458777, 1, 131073, 458778, 1, 131074, 458785, 1, 131072, 458786, 1, 131073, 458787, 1, 131073, 458788, 1, 131074, 458795, 1, 131072, 458796, 1, 131073, 458797, 1, 4, 458798, 1, 65537, 458799, 1, 65537, 458800, 1, 65537, 458801, 1, 65537, 458802, 1, 65537, 458803, 1, 65537, 458804, 1, 65537, 458805, 1, 65537, 458806, 1, 65537, 458807, 1, 3, 458808, 1, 131073, 458809, 1, 131074, 458828, 1, 131072, 458829, 1, 131073, 458830, 1, 131074, 524333, 1, 131072, 524334, 1, 131073, 524335, 1, 131073, 524336, 1, 131073, 524337, 1, 131073, 524338, 1, 131073, 524339, 1, 131073, 524340, 1, 131073, 524341, 1, 131073, 524342, 1, 131073, 524343, 1, 131074 )
+
+[node name="JumpPoints" type="Node2D" parent="."]
+
+[node name="JumpLocation" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 184, 112 )
+
+[node name="JumpLocation2" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 264, 48 )
+
+[node name="JumpLocation3" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 328, 32 )
+
+[node name="JumpLocation4" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 400, 112 )
+
+[node name="JumpLocation5" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 480, 32 )
+
+[node name="JumpLocation6" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 560, 112 )
+
+[node name="JumpLocation7" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 640, 32 )
+
+[node name="JumpLocation8" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 720, 112 )
+
+[node name="JumpLocation9" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 776, 112 )
+
+[node name="JumpLocation10" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 840, 112 )
+
+[node name="JumpLocation11" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 904, 112 )
+
+[node name="JumpLocation12" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 992, 48 )
+
+[node name="JumpLocation13" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 1056, 48 )
+
+[node name="JumpLocation14" parent="JumpPoints" instance=ExtResource( 2 )]
+position = Vector2( 1144, 72 )
+
+[node name="Exit" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1152, 72 )
+next_scene = "res://src/Level8Post.tscn"
+
+[node name="Bayrak" parent="." instance=ExtResource( 5 )]
+position = Vector2( 40, 72 )
+
+[node name="Bayrak2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1096, 72 )
+
+[node name="Laser" parent="." instance=ExtResource( 7 )]
+position = Vector2( 368, 64 )
+rotation = 0.785398
+scale = Vector2( 2, 2 )
+activation_time = 0.8
+
+[node name="Laser2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 528, 64 )
+rotation = 0.785398
+scale = Vector2( 2, 2 )
+activation_time = 0.8
+
+[node name="Laser3" parent="." instance=ExtResource( 7 )]
+position = Vector2( 688, 64 )
+rotation = 0.785398
+scale = Vector2( 2, 2 )
+activation_time = 0.8
+
+[node name="Laser4" parent="." instance=ExtResource( 7 )]
+position = Vector2( 440, 64 )
+rotation = 2.35619
+scale = Vector2( 2, 2 )
+activation_time = 1.2
+
+[node name="Laser5" parent="." instance=ExtResource( 7 )]
+position = Vector2( 608, 64 )
+rotation = 2.35619
+scale = Vector2( 2, 2 )
+activation_time = 1.2
+
+[node name="Spawner" parent="." instance=ExtResource( 6 )]
+position = Vector2( 304, 64 )
+rotation = 0.0
+
+[node name="Enemy" parent="." instance=ExtResource( 8 )]
+position = Vector2( 744, 136 )
+height = 100
+start_point = 2
+
+[node name="Enemy2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 808, 32 )
+height = 100
+
+[node name="Enemy3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 872, 136 )
+height = 100
+start_point = 2
+
+[node name="Laser6" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1024, 72 )
+rotation = 0.0
+
+[node name="Background" parent="." instance=ExtResource( 9 )]
+
+[node name="Label" type="Label" parent="."]
+margin_left = -241.0
+margin_right = -201.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Label"]
+margin_left = 384.0
+margin_top = 16.0
+margin_right = 427.0
+margin_bottom = 59.0
+rect_scale = Vector2( 0.75, 0.75 )
+custom_fonts/font = ExtResource( 10 )
+text = "or 8"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Label"]
+margin_left = 400.0
+margin_top = 19.0
+margin_right = 437.0
+margin_bottom = 62.0
+rect_rotation = 90.0
+rect_scale = Vector2( 0.8, 0.75 )
+custom_fonts/font = ExtResource( 10 )
+text = "8"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 1184.0
+margin_top = 16.0
+margin_right = 1248.0
+margin_bottom = 59.0
+rect_scale = Vector2( 0.75, 0.75 )
+custom_fonts/font = ExtResource( 10 )
+text = "Yes, that
+is a loop"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

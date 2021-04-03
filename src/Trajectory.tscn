@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/scripts/Trajectory.gd" type="Script" id=1]
+
+[node name="Trajectory" type="Line2D"]
+self_modulate = Color( 0.686275, 0.686275, 0.686275, 0.294118 )
+points = PoolVector2Array( 128, 104 )
+width = 1.0
+default_color = Color( 0.905882, 0.905882, 0.905882, 1 )
+script = ExtResource( 1 )

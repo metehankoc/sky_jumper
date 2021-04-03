@@ -1,0 +1,85 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://src/scripts/Laser.gd" type="Script" id=1]
+[ext_resource path="res://assets/laser/LAZERYENI5.png" type="Texture" id=2]
+[ext_resource path="res://assets/laser/LAZERYENI2.png" type="Texture" id=3]
+[ext_resource path="res://assets/laser/LAZERYENI3.png" type="Texture" id=4]
+[ext_resource path="res://assets/laser/LAZERYENI4.png" type="Texture" id=5]
+[ext_resource path="res://assets/laser/LAZERYENI1.png" type="Texture" id=6]
+[ext_resource path="res://assets/laser/LAZERYENI7.png" type="Texture" id=7]
+[ext_resource path="res://assets/laser/LAZERYENI9.png" type="Texture" id=8]
+[ext_resource path="res://assets/laser/LAZERYENI10.png" type="Texture" id=9]
+[ext_resource path="res://assets/laser/LAZERYENI8.png" type="Texture" id=10]
+[ext_resource path="res://assets/laser/LAZERYENI6.png" type="Texture" id=11]
+[ext_resource path="res://musics/laser.wav" type="AudioStream" id=12]
+[ext_resource path="res://musics/die.wav" type="AudioStream" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "turnon",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 6 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 11 ) ],
+"loop": false,
+"name": "turnoff",
+"speed": 10.0
+} ]
+
+[node name="Laser" type="Area2D"]
+rotation = 1.5708
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+activation_time = 1.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "turnon"
+frame = 5
+playing = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Die" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+
+[node name="Laser" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+
+[node name="L1" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -2.00001, -2.99999, -2.00022, -62, 1.99978, -62, 2.00001, 2.99999 )
+
+[node name="L2" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -2.00007, -18, -2.00022, -62, 1.99978, -62, 1.99996, -12 )
+
+[node name="L3" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -2.00012, -34, -2.00022, -62, 1.99978, -62, 1.9999, -28 )
+
+[node name="L4" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -2.00018, -50, -2.00022, -62, 1.99978, -62, 1.99984, -44 )
+
+[node name="L5" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -1.99978, 62, -2.00001, -2.99999, 2.00001, 2.99999, 2.00022, 62 )
+
+[node name="L6" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -1.99978, 62, -1.99996, 12, 2.00007, 18, 2.00022, 62 )
+
+[node name="L7" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -1.99978, 62, -1.9999, 28, 2.00012, 34, 2.00022, 62 )
+
+[node name="L8" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -1.99978, 62, -1.99984, 44, 2.00018, 50, 2.00022, 62 )
+[connection signal="body_entered" from="." to="." method="_on_Laser_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="finished" from="Die" to="." method="_on_Die_finished"]
+[connection signal="finished" from="Laser" to="." method="_on_Laser_finished"]
