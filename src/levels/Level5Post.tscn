@@ -3,13 +3,14 @@
 [ext_resource path="res://assets/fonts/monogram_dynamicfont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/Exit.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/JumpLocation.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/Char.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/char/Char.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Map.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Bayrak.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Background.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Coin.tscn" type="PackedScene" id=8]
 
-[node name="Level1Post" type="Node2D"]
+
+[node name="Level5Post" type="Node2D"]
 
 [node name="Char" parent="." instance=ExtResource( 4 )]
 position = Vector2( 88, 72 )
@@ -24,8 +25,8 @@ margin_right = 192.0
 margin_bottom = 59.0
 rect_scale = Vector2( 0.75, 0.75 )
 custom_fonts/font = ExtResource( 1 )
-text = "Loop 1
-ends..."
+text = "Loop 6
+will beg-"
 align = 1
 valign = 1
 __meta__ = {
@@ -39,8 +40,7 @@ margin_right = 432.0
 margin_bottom = 59.0
 rect_scale = Vector2( 0.75, 0.75 )
 custom_fonts/font = ExtResource( 1 )
-text = "Loop 1
-ends?"
+text = "-in..."
 align = 1
 valign = 1
 __meta__ = {
@@ -60,7 +60,7 @@ position = Vector2( 328, 72 )
 
 [node name="Exit" parent="." instance=ExtResource( 2 )]
 position = Vector2( 336, 72 )
-next_scene = "res://src/Level2.tscn"
+next_scene = "res://src/Level6.tscn"
 
 [node name="Bayrak" parent="." instance=ExtResource( 6 )]
 position = Vector2( 40, 72 )

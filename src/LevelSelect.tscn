@@ -15,14 +15,14 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-level_1 = "res://src/Level1.tscn"
-level_2 = "res://src/Level2.tscn"
-level_3 = "res://src/Level3.tscn"
-level_4 = "res://src/Level4.tscn"
-level_5 = "res://src/Level5.tscn"
-level_6 = "res://src/Level6.tscn"
-level_7 = "res://src/Level7.tscn"
-level_8 = "res://src/Level8.tscn"
+level_1 = "res://src/levels/Level1.tscn"
+level_2 = "res://src/levels/Level2.tscn"
+level_3 = "res://src/levels/Level3.tscn"
+level_4 = "res://src/levels/Level4.tscn"
+level_5 = "res://src/levels/Level5.tscn"
+level_6 = "res://src/levels/Level6.tscn"
+level_7 = "res://src/levels/Level7.tscn"
+level_8 = "res://src/levels/Level8.tscn"
 home = "res://src/Menu.tscn"
 
 [node name="Sprite" type="Sprite" parent="."]
