@@ -1,34 +1,26 @@
 extends Area2D
 
-export(int) var speed
+export(int, 0 , 500, 50) var speed = 200
+export(String, "Right", "Left") var direction
 
-onready var character = get_tree().get_root().get_child(0).get_node("Char")
-
-var direction = -1
-
-"""
-Direction
--1 for down
-1 for up
-"""
+onready var hitSound = $Hit
+onready var dieSound = $Die 
 
 func _physics_process(delta):
-	position += transform.x * speed * delta * direction
-
+	if direction == "Right":
+		position += transform.x * speed * delta * -1
+	else:
+		position += transform.x * speed * delta
 
 func _on_Bullet_body_entered(body):
-	if body.name == "Char":
-		if character != null:
-			character._die()
-		$Hit.play()
-	else:
-		queue_free()
-
+	Events.emit_signal("player_stopped")
+	hitSound.play()
+	queue_free()
 
 
 func _on_Hit_finished():
-	$Die.play()
+	dieSound.play()
 
 
 func _on_Die_finished():
-	get_tree().reload_current_scene()
+	Events.emit_signal("player_killed")

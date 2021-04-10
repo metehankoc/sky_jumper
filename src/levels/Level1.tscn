@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/fonts/monogram_dynamicfont.tres" type="DynamicFont" id=1]
-[ext_resource path="res://src/Char.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/char/Char.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Map.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/JumpLocation.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Laser.tscn" type="PackedScene" id=5]
@@ -62,15 +62,12 @@ __meta__ = {
 
 [node name="Laser" parent="." instance=ExtResource( 5 )]
 position = Vector2( 528, 72 )
-rotation = 0.0
 
 [node name="Laser2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 640, 72 )
-rotation = 0.0
 
 [node name="Laser3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 752, 72 )
-rotation = 0.0
 
 [node name="Duraklar" type="Node2D" parent="."]
 

@@ -2,28 +2,26 @@ extends Area2D
 
 export (PackedScene) var Bullet
 
-export(float) var activation_time
-export(int, "down", "up")var direction
-"""
-up = 1
-down = 0
-"""
+export(float, 0, 5, 0.5) var activation_time = 1.0
+export(String, "Right", "Left") var direction
 
+onready var timer = $Timer
+onready var animated_sprite = $AnimatedSprite
 
 func _ready():
-	$Timer.set_wait_time( activation_time)
-	$Timer.start()
-	if direction:
-		$AnimatedSprite.play("default")
+	timer.set_wait_time( activation_time)
+	timer.start()
+	if direction == "Right":
+		animated_sprite.play("default")
 	else:
-		$AnimatedSprite.flip_h = true
-		$AnimatedSprite.play("default")
+		animated_sprite.flip_h = true
+		animated_sprite.play("default")
 
 
 func _on_Timer_timeout():
 	var bullet =  Bullet.instance()
-	if !direction:
-		bullet.direction = 1
+	if direction == "Right":
+		bullet.direction = "Right"
 	add_child( bullet )
 
 

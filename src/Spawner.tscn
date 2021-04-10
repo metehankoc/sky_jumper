@@ -22,13 +22,11 @@ animations = [ {
 } ]
 
 [node name="Spawner" type="Area2D"]
-rotation = 1.5708
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 Bullet = ExtResource( 2 )
-activation_time = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

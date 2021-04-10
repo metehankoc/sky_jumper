@@ -20,13 +20,17 @@ _global_script_class_icons={
 
 [application]
 
-config/name="iztech_game_jam"
+config/name="Sky Jumper"
 run/main_scene="res://src/Menu.tscn"
 config/icon="res://assets/titlescreen2.png"
 
 [audio]
 
 default_bus_layout=""
+
+[autoload]
+
+Events="*res://src/autoload/Events.gd"
 
 [display]
 
