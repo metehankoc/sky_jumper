@@ -10,7 +10,6 @@ extents = Vector2( 3.58112, 2.04252 )
 
 [node name="Bullet" type="Area2D"]
 script = ExtResource( 1 )
-speed = 200
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )

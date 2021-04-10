@@ -3,13 +3,14 @@
 [ext_resource path="res://assets/fonts/monogram_dynamicfont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/Exit.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/JumpLocation.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/Char.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/char/Char.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Map.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Bayrak.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Background.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Coin.tscn" type="PackedScene" id=8]
 
-[node name="Level7Post" type="Node2D"]
+
+[node name="Level4Post" type="Node2D"]
 
 [node name="Char" parent="." instance=ExtResource( 4 )]
 position = Vector2( 88, 72 )
@@ -24,8 +25,8 @@ margin_right = 192.0
 margin_bottom = 59.0
 rect_scale = Vector2( 0.75, 0.75 )
 custom_fonts/font = ExtResource( 1 )
-text = "Are we on
-a loop?"
+text = "Loop 4
+ends"
 align = 1
 valign = 1
 __meta__ = {
@@ -33,28 +34,14 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="."]
-margin_left = 384.0
+margin_left = 368.0
 margin_top = 16.0
-margin_right = 427.0
+margin_right = 432.0
 margin_bottom = 59.0
 rect_scale = Vector2( 0.75, 0.75 )
 custom_fonts/font = ExtResource( 1 )
-text = "or 8"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label3" type="Label" parent="."]
-margin_left = 400.0
-margin_top = 19.0
-margin_right = 437.0
-margin_bottom = 62.0
-rect_rotation = 90.0
-rect_scale = Vector2( 0.8, 0.75 )
-custom_fonts/font = ExtResource( 1 )
-text = "8"
+text = "Loop 5
+starts?"
 align = 1
 valign = 1
 __meta__ = {
@@ -74,7 +61,7 @@ position = Vector2( 328, 72 )
 
 [node name="Exit" parent="." instance=ExtResource( 2 )]
 position = Vector2( 336, 72 )
-next_scene = "res://src/Level8.tscn"
+next_scene = "res://src/Level5.tscn"
 
 [node name="Bayrak" parent="." instance=ExtResource( 6 )]
 position = Vector2( 40, 72 )
