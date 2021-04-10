@@ -9,7 +9,6 @@
 [ext_resource path="res://src/Background.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/Bayrak.tscn" type="PackedScene" id=8]
 
-
 [node name="Level1" type="Node2D"]
 
 [node name="Char" parent="." instance=ExtResource( 2 )]
@@ -63,15 +62,12 @@ __meta__ = {
 
 [node name="Laser" parent="." instance=ExtResource( 5 )]
 position = Vector2( 528, 72 )
-rotation = 0.0
 
 [node name="Laser2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 640, 72 )
-rotation = 0.0
 
 [node name="Laser3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 752, 72 )
-rotation = 0.0
 
 [node name="Duraklar" type="Node2D" parent="."]
 

@@ -1,16 +1,16 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/scripts/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://assets/enemy/enemyflying3.png" type="Texture" id=2]
+[ext_resource path="res://assets/enemy/enemyflyinghorizontal 1.png" type="Texture" id=2]
 [ext_resource path="res://musics/die.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/enemy/enemyflying4.png" type="Texture" id=4]
-[ext_resource path="res://assets/enemy/enemyflying5.png" type="Texture" id=5]
-[ext_resource path="res://assets/enemy/enemyflying1.png" type="Texture" id=6]
-[ext_resource path="res://assets/enemy/enemyflying2.png" type="Texture" id=7]
+[ext_resource path="res://assets/enemy/enemyflyinghorizontal 2.png" type="Texture" id=4]
+[ext_resource path="res://assets/enemy/enemyflyinghorizontal 3.png" type="Texture" id=5]
+[ext_resource path="res://assets/enemy/enemyflyinghorizontal 4.png" type="Texture" id=6]
+[ext_resource path="res://assets/enemy/enemyflyinghorizontal 5.png" type="Texture" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "default",
 "speed": 12.0
@@ -27,10 +27,11 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+moving_down = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
