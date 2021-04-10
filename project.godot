@@ -28,6 +28,10 @@ config/icon="res://assets/titlescreen2.png"
 
 default_bus_layout=""
 
+[autoload]
+
+Events="*res://src/autoload/Events.gd"
+
 [display]
 
 window/size/width=256

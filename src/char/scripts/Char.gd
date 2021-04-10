@@ -17,10 +17,8 @@ var is_jumping = false
 var landed = true
 
 func _ready():
-	#add_new_location(Vector2(100,50))
-	#add_new_location(Vector2(120,140))
-	#add_new_location(Vector2(150,80))
-	pass
+	Events.connect("player_stopped", self, "_on_player_stopped")
+	Events.connect("player_killed", self, "_on_player_killed")
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") && landed:
@@ -93,6 +91,7 @@ func _die():
 
 func add_new_location(new_pos):
 	locations.append(new_pos)
+	print("New pos added")
 	if locations.size() == 1:
 		_calculate_direction(0)
 		_turn()
@@ -107,3 +106,14 @@ func _on_AnimatedSprite_animation_finished():
 func _get_next_position():
 	if loc_index < locations.size() -2:
 		return locations[loc_index+1]
+
+
+func _on_player_stopped():
+	#change state to stopped or somthing
+	_die()
+
+
+func _on_player_killed():
+	print("Player killed")
+	get_tree().reload_current_scene()
+	pass

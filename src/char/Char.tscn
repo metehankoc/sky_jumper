@@ -17,14 +17,14 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 1 ), ExtResource( 8 ), ExtResource( 6 ) ],
-"loop": false,
-"name": "jump",
-"speed": 24.0
-}, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 4 ) ],
 "loop": false,
 "name": "land",
+"speed": 24.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 1 ), ExtResource( 8 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "jump",
 "speed": 24.0
 } ]
 
