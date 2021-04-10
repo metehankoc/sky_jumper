@@ -3,13 +3,15 @@ extends Area2D
 export(float) var activation_time = 2
 
 var turn_on_frame_time
-var turn_off_frame_time
-var turn_on_left_trajectory = [PoolVector2Array(),PoolVector2Array(),PoolVector2Array(),PoolVector2Array()]
-var turn_on_right_trajectory = [PoolVector2Array(),PoolVector2Array(),PoolVector2Array(),PoolVector2Array()]
-var turn_off_left_trajectory = [PoolVector2Array(),PoolVector2Array(),PoolVector2Array(),PoolVector2Array()]
-var turn_off_right_trajectory = [PoolVector2Array(),PoolVector2Array(),PoolVector2Array(),PoolVector2Array()]
+var turn_on_left_trajectory = []
+var turn_on_right_trajectory = []
 
-onready var active = true
+var turn_off_frame_time
+var turn_off_left_trajectory = []
+var turn_off_right_trajectory = []
+
+var active = true
+
 onready var animatedSprite = $AnimatedSprite
 onready var laserSound = $Laser
 onready var timer = $Timer
@@ -22,34 +24,32 @@ func _ready():
 	timer.set_wait_time( activation_time)
 	timer.start()
 
-func _on_Timer_timeout():
-	#print( colLeft.polygon[0])
-	#print( colLeft.polygon[1])
-	#print( colLeft.polygon[2])
-	#print( colLeft.polygon[3])
-	#print(animatedSprite.get_sprite_frames().get_frame_count("turnoff"))
-	#print(animatedSprite.get_sprite_frames().get_frame_count("turnon"))
-	#print(animatedSprite.get_sprite_frames().get_frame_count("off"))
-	#print(animatedSprite.get_sprite_frames().get_frame_count("on"))
-	print(animatedSprite.get_sprite_frames().get_animation_speed("turnon"))
-	print(animatedSprite.get_sprite_frames().get_frame_count("turnon"))
-	
+func _on_Timer_timeout():	
 	if active:
 		turn_off()
-		#colRight.polygon[2] = colRight.polygon[1]
-		#colRight.polygon[3] = colRight.polygon[0]
 	else:
 		turn_on()
 	
 
 func turn_off():
+	var frame_count = animatedSprite.get_sprite_frames().get_frame_count("turnoff")
 	animatedSprite.play("turnoff")
+	for i in range(0, frame_count):
+		colLeft.polygon = turn_off_left_trajectory[i]
+		colRight.polygon = turn_off_right_trajectory[i]
+		yield(get_tree().create_timer(turn_off_frame_time), "timeout")
 	
 	active = false
 
 
 func turn_on():
+	var frame_count = animatedSprite.get_sprite_frames().get_frame_count("turnon")
 	animatedSprite.play("turnon")
+	for i in range(0, frame_count):
+		colLeft.polygon = turn_on_left_trajectory[i]
+		colRight.polygon = turn_on_right_trajectory[i]
+		yield(get_tree().create_timer(turn_on_frame_time), "timeout")
+	
 	active = true
 
 
@@ -72,19 +72,57 @@ func _on_Laser_finished():
 	Events.emit_signal("player_killed")
 
 
+func calculate_turn_off_procedure():
+	var speed = animatedSprite.get_sprite_frames().get_animation_speed("turnoff")
+	var frame_count = animatedSprite.get_sprite_frames().get_frame_count("turnoff")
+	 
+	turn_off_frame_time = 1 / speed
+	
+	var leftDiff2 = colLeft.polygon[1] - colLeft.polygon[2]
+	var leftDiff3 = colLeft.polygon[0] - colLeft.polygon[3]
+	
+	for i in range(1, frame_count+1):
+		var current_polygon = PoolVector2Array()
+		current_polygon.append(colLeft.polygon[0])
+		current_polygon.append(colLeft.polygon[1])
+		current_polygon.append(colLeft.polygon[2] + (leftDiff2*i/frame_count))
+		current_polygon.append(colLeft.polygon[3] + (leftDiff3*i/frame_count))
+		turn_off_left_trajectory.append(current_polygon)
+	
+	var rightDiff2 = colRight.polygon[1] - colRight.polygon[2]
+	var rightDiff3 = colRight.polygon[0] - colRight.polygon[3]
+	for i in range(1, frame_count+1):
+		var current_polygon = PoolVector2Array()
+		current_polygon.append(colRight.polygon[0])
+		current_polygon.append(colRight.polygon[1])
+		current_polygon.append(colRight.polygon[2] + (rightDiff2*i/frame_count))
+		current_polygon.append(colRight.polygon[3] + (rightDiff3*i/frame_count))
+		turn_off_right_trajectory.append(current_polygon)
+
+
 func calculate_turn_on_procedure():
 	var speed = animatedSprite.get_sprite_frames().get_animation_speed("turnon")
 	var frame_count = animatedSprite.get_sprite_frames().get_frame_count("turnon")
 	 
 	turn_on_frame_time = 1 / speed
 	
-	for i in range(frame_count):
-		var 
-		
-		pass
+	var leftDiff2 = colLeft.polygon[2] - colLeft.polygon[1]
+	var leftDiff3 = colLeft.polygon[3] - colLeft.polygon[0]
 	
-	pass
-
-
-func calculate_turn_off_procedure():
-	pass
+	for i in range(1, frame_count+1):
+		var current_polygon = PoolVector2Array()
+		current_polygon.append(colLeft.polygon[0])
+		current_polygon.append(colLeft.polygon[1])
+		current_polygon.append(colLeft.polygon[1] + (leftDiff2*i/frame_count))
+		current_polygon.append(colLeft.polygon[0] + (leftDiff3*i/frame_count))
+		turn_on_left_trajectory.append(current_polygon)
+	
+	var rightDiff2 = colRight.polygon[2] - colRight.polygon[1]
+	var rightDiff3 = colRight.polygon[3] - colRight.polygon[0]
+	for i in range(1, frame_count+1):
+		var current_polygon = PoolVector2Array()
+		current_polygon.append(colRight.polygon[0])
+		current_polygon.append(colRight.polygon[1])
+		current_polygon.append(colRight.polygon[1] + (rightDiff2*i/frame_count))
+		current_polygon.append(colRight.polygon[0] + (rightDiff3*i/frame_count))
+		turn_on_right_trajectory.append(current_polygon)

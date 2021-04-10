@@ -20,7 +20,7 @@ animations = [ {
 "name": "off",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "on",
 "speed": 10.0
@@ -37,17 +37,15 @@ animations = [ {
 } ]
 
 [node name="Laser" type="Area2D"]
-rotation = 1.5708
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-activation_time = null
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "on"
-frame = 3
+frame = 5
 playing = true
 
 [node name="Timer" type="Timer" parent="."]
