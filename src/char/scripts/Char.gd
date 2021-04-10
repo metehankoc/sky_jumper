@@ -1,48 +1,58 @@
 extends KinematicBody2D
 
-const CLOSENESS_DISTANCE = 5
+signal jump_location_added()
+
+const CLOSENESS_DISTANCE = 2
 const MAX_SPEED = 360
 const MIN_SPEED = 180
 const DECELERATION = -20
-
-onready var speed = MAX_SPEED
-onready var motion = Vector2()
-onready var move_direction = Vector2()
-
-onready var animated_sprite = $AnimatedSprite
 
 var locations = []
 var loc_index = -1
 var is_jumping = false
 var landed = true
 
+onready var current_state
+onready var states = {
+	"idle": $States/Idle,
+	"jump": $States/Jump,
+	"land": $States/Land,
+	"stop": $States/Stop
+}
+
+onready var speed = MAX_SPEED
+onready var move_vector = Vector2()
+onready var move_direction = Vector2()
+
+onready var animated_sprite = $AnimatedSprite
+
 func _ready():
 	Events.connect("player_stopped", self, "_on_player_stopped")
 	Events.connect("player_killed", self, "_on_player_killed")
+	
+	self.connect("jump_location_added", self, "_on_jump_location_added")
+	
+	for state in $States.get_children():
+		state.connect("state_changed", self, "_change_state")
+	
+	current_state = states["idle"]
+	current_state._enter()
 
 func _physics_process(delta):
-	if Input.is_action_just_pressed("ui_accept") && landed:
-		if loc_index < locations.size()-1:
-			loc_index += 1
-		_jump()
-	elif Input.is_action_just_pressed("ui_cancel"):
-		get_tree().change_scene("res://src/LevelSelect.tscn")
-		
-	if !landed && _close_to(locations[loc_index]):
-		_land()
-	_apply_movement()
+	current_state._update(delta)
+	
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().reload_current_scene()
+		#get_tree().change_scene("res://src/LevelSelect.tscn")
 
-func _calculate_direction(index):
-	if index < locations.size():
-		move_direction.x = locations[index].x - self.position.x
-		move_direction.y = locations[index].y - self.position.y
-		move_direction = move_direction.normalized()
-	else:
-		move_direction.x = 1
-		move_direction.y = 0
 
-func _turn():
-	self.rotation = move_direction.angle()
+func _change_state(state_name):
+	if states[state_name] != null:
+		current_state._exit()
+	
+		current_state = states[state_name]
+		current_state._enter()
+
 
 func _get_trajectory_positions():
 	var res = []
@@ -53,67 +63,50 @@ func _get_trajectory_positions():
 			res.append( locations[loc_index])
 		res.append( locations[loc_index+1])
 	return res
-	
-func _is_landed():
-	return landed
-	
-func _close_to(next_pos):
-	if abs(next_pos.x - self.position.x) <= CLOSENESS_DISTANCE && abs(next_pos.y - self.position.y) <= CLOSENESS_DISTANCE:
-		return true
-	return false
 
-func _jump():
+
+func play_sound_jump():
 	$Jump.play()
-	is_jumping = true
-	landed = false
-	animated_sprite.play("jump")
 
-func _land():
-	is_jumping = false
-	self.position = locations[loc_index]
-	animated_sprite.play("land")
+func play_sound_die():
+	$Die.play()
 
-func _apply_movement():
-	if is_jumping:
-		speed = max( speed + DECELERATION, MIN_SPEED)
-		motion.x = speed * move_direction.x
-		motion.y = speed * move_direction.y
-	else:
-		speed = MAX_SPEED
-		motion.x = 0
-		motion.y = 0
-	move_and_slide(motion)
-	
-func _die():
-	landed = false
-	is_jumping = false
-	motion = Vector2()
 
 func add_new_location(new_pos):
 	locations.append(new_pos)
-	print("New pos added")
 	if locations.size() == 1:
-		_calculate_direction(0)
-		_turn()
+		emit_signal("jump_location_added")
 
-func _on_AnimatedSprite_animation_finished():
-	if animated_sprite.get_animation() == "land":
-		animated_sprite.play("idle")
-		_calculate_direction(loc_index+1)
-		_turn()
-		landed = true
 
-func _get_next_position():
-	if loc_index < locations.size() -2:
-		return locations[loc_index+1]
+func _get_next_location():
+	if _has_locations():
+		return locations[0]
+	else:
+		return null
+
+
+func _has_locations():
+	return locations.size() > 0
+
+
+func _pop_location():
+	if _has_locations():
+		locations.pop_front()
+
+
+func _on_jump_location_added():
+	_change_state("idle")
 
 
 func _on_player_stopped():
-	#change state to stopped or somthing
-	_die()
+	_change_state("stop")
+	pass
 
 
 func _on_player_killed():
-	print("Player killed")
+	if current_state != states["stop"]:
+		play_sound_die()
+
+
+func _on_Die_sound_finished():
 	get_tree().reload_current_scene()
-	pass

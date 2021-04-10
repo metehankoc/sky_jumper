@@ -2,6 +2,8 @@ extends Area2D
 
 export(float) var activation_time = 2
 
+var stop = false
+
 var turn_on_frame_time
 var turn_on_left_trajectory = []
 var turn_on_right_trajectory = []
@@ -24,6 +26,7 @@ func _ready():
 	timer.set_wait_time( activation_time)
 	timer.start()
 
+
 func _on_Timer_timeout():	
 	if active:
 		turn_off()
@@ -35,6 +38,9 @@ func turn_off():
 	var frame_count = animatedSprite.get_sprite_frames().get_frame_count("turnoff")
 	animatedSprite.play("turnoff")
 	for i in range(0, frame_count):
+		if stop:
+			animatedSprite.stop()
+			break
 		colLeft.polygon = turn_off_left_trajectory[i]
 		colRight.polygon = turn_off_right_trajectory[i]
 		yield(get_tree().create_timer(turn_off_frame_time), "timeout")
@@ -46,6 +52,9 @@ func turn_on():
 	var frame_count = animatedSprite.get_sprite_frames().get_frame_count("turnon")
 	animatedSprite.play("turnon")
 	for i in range(0, frame_count):
+		if stop:
+			animatedSprite.stop()
+			break
 		colLeft.polygon = turn_on_left_trajectory[i]
 		colRight.polygon = turn_on_right_trajectory[i]
 		yield(get_tree().create_timer(turn_on_frame_time), "timeout")
@@ -55,6 +64,7 @@ func turn_on():
 
 func _on_Laser_body_entered(body):
 	if body.get_name() == "Char":
+		_stop_laser()
 		Events.emit_signal("player_stopped")
 		laserSound.play()
 
@@ -67,6 +77,17 @@ func _on_AnimatedSprite_animation_finished():
 		animatedSprite.play("off")
 		timer.start()
 
+
+func _stop_laser():
+	timer.stop()
+	stop = true
+	animatedSprite.stop()
+
+
+func _restart_laser():
+	stop = false
+	timer.start()
+	animatedSprite.play()
 
 func _on_Laser_finished():
 	Events.emit_signal("player_killed")
