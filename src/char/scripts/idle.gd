@@ -23,9 +23,8 @@ func _jump():
 func _calculate_next_direction():
 	var next_location = owner._get_next_location()
 	if next_location != null:
-		owner.move_vector.x = next_location.x - owner.position.x
-		owner.move_vector.y = next_location.y - owner.position.y
-		owner.move_direction = owner.move_vector.normalized()
+		owner.move_direction = next_location - owner.position
+		owner.move_direction = owner.move_direction.normalized()
 	else:
 		owner.move_direction = Vector2(0,-1)
 

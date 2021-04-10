@@ -21,7 +21,6 @@ onready var states = {
 }
 
 onready var speed = MAX_SPEED
-onready var move_vector = Vector2()
 onready var move_direction = Vector2()
 
 onready var animated_sprite = $AnimatedSprite
