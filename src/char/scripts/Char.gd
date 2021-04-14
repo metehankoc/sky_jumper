@@ -40,9 +40,8 @@ func _ready():
 func _physics_process(delta):
 	current_state._update(delta)
 	
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_restart"):
 		get_tree().reload_current_scene()
-		#get_tree().change_scene("res://src/LevelSelect.tscn")
 
 
 func _change_state(state_name):
