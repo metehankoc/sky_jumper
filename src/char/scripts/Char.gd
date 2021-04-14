@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
-signal jump_location_added()
+signal first_jump_location_added()
 
-const CLOSENESS_DISTANCE = 2
+const CLOSENESS_DISTANCE = 0.5
 const MAX_SPEED = 360
 const MIN_SPEED = 180
 const DECELERATION = -20
@@ -29,13 +29,10 @@ func _ready():
 	Events.connect("player_stopped", self, "_on_player_stopped")
 	Events.connect("player_killed", self, "_on_player_killed")
 	
-	self.connect("jump_location_added", self, "_on_jump_location_added")
-	
 	for state in $States.get_children():
 		state.connect("state_changed", self, "_change_state")
 	
-	current_state = states["idle"]
-	current_state._enter()
+	_init_char()
 
 func _physics_process(delta):
 	current_state._update(delta)
@@ -43,6 +40,11 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_restart"):
 		get_tree().reload_current_scene()
 
+
+func _init_char():
+	current_state = states["idle"]
+	current_state._turn()
+	current_state._enter()
 
 func _change_state(state_name):
 	if states[state_name] != null:
@@ -73,7 +75,17 @@ func play_sound_die():
 func add_new_location(new_pos):
 	locations.append(new_pos)
 	if locations.size() == 1:
-		emit_signal("jump_location_added")
+		emit_signal("first_jump_location_added")
+
+
+func _calculate_next_direction():
+	var next_location = _get_next_location()
+	if next_location != null:
+		move_direction = next_location - position
+		move_direction = move_direction.normalized()
+	else:
+		move_direction = Vector2(0,-1)
+	return move_direction.angle()
 
 
 func _get_next_location():
@@ -92,7 +104,7 @@ func _pop_location():
 		locations.pop_front()
 
 
-func _on_jump_location_added():
+func _on_first_jump_location_added():
 	_change_state("idle")
 
 
