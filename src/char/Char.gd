@@ -17,7 +17,8 @@ onready var states = {
 	"idle": $States/Idle,
 	"jump": $States/Jump,
 	"land": $States/Land,
-	"stop": $States/Stop
+	"stop": $States/Stop,
+	"dead": $States/Dead
 }
 
 onready var speed = MAX_SPEED
@@ -26,7 +27,9 @@ onready var move_direction = Vector2()
 onready var animated_sprite = $AnimatedSprite
 
 func _ready():
+# warning-ignore:return_value_discarded
 	Events.connect("player_stopped", self, "_on_player_stopped")
+# warning-ignore:return_value_discarded
 	Events.connect("player_killed", self, "_on_player_killed")
 	
 	for state in $States.get_children():
@@ -38,6 +41,7 @@ func _physics_process(delta):
 	current_state._update(delta)
 	
 	if Input.is_action_just_pressed("ui_restart"):
+# warning-ignore:return_value_discarded
 		get_tree().reload_current_scene()
 
 
@@ -68,7 +72,7 @@ func _get_trajectory_positions():
 func play_sound_jump():
 	$Jump.play()
 
-func play_sound_die():
+func play_die_sound():
 	$Die.play()
 
 
@@ -114,9 +118,10 @@ func _on_player_stopped():
 
 
 func _on_player_killed():
-	if current_state != states["stop"]:
-		play_sound_die()
+	if current_state != states["stop"]: #?
+		_change_state("dead")
 
 
 func _on_Die_sound_finished():
+# warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
