@@ -16,15 +16,17 @@ var active = true
 
 onready var animatedSprite = $AnimatedSprite
 onready var laserSound = $Laser
-onready var timer = $Timer
+onready var activationTimer = $ActivationTimer
+onready var turnOnTimer = $TurnOnTimer
+onready var turnOffTimer = $TurnOffTimer
 onready var colLeft = $CollisionLeft
 onready var colRight = $CollisionRight
 
 func _ready():
 	calculate_turn_off_procedure()
 	calculate_turn_on_procedure()
-	timer.set_wait_time( activation_time)
-	timer.start()
+	activationTimer.set_wait_time( activation_time)
+	activationTimer.start()
 
 
 func _on_Timer_timeout():	
@@ -43,7 +45,8 @@ func turn_off():
 			break
 		colLeft.polygon = turn_off_left_trajectory[i]
 		colRight.polygon = turn_off_right_trajectory[i]
-		yield(get_tree().create_timer(turn_off_frame_time), "timeout")
+		turnOffTimer.start()
+		yield(turnOffTimer, "timeout")
 	
 	active = false
 
@@ -57,7 +60,8 @@ func turn_on():
 			break
 		colLeft.polygon = turn_on_left_trajectory[i]
 		colRight.polygon = turn_on_right_trajectory[i]
-		yield(get_tree().create_timer(turn_on_frame_time), "timeout")
+		turnOnTimer.start()
+		yield(turnOnTimer, "timeout")
 	
 	active = true
 
@@ -72,21 +76,21 @@ func _on_Laser_body_entered(body):
 func _on_AnimatedSprite_animation_finished():
 	if( animatedSprite.get_animation() == "turnon"):
 		animatedSprite.play("on")
-		timer.start()
+		activationTimer.start()
 	if( animatedSprite.get_animation() == "turnoff"):
 		animatedSprite.play("off")
-		timer.start()
+		activationTimer.start()
 
 
 func _stop_laser():
-	timer.stop()
+	activationTimer.stop()
 	stop = true
 	animatedSprite.stop()
 
 
 func _restart_laser():
-	stop = false
-	timer.start()
+	activationTimer = false
+	activationTimer.start()
 	animatedSprite.play()
 
 func _on_Laser_finished():
@@ -98,6 +102,7 @@ func calculate_turn_off_procedure():
 	var frame_count = animatedSprite.get_sprite_frames().get_frame_count("turnoff")
 	 
 	turn_off_frame_time = 1 / speed
+	turnOffTimer.set_wait_time(turn_off_frame_time)
 	
 	var leftDiff2 = colLeft.polygon[1] - colLeft.polygon[2]
 	var leftDiff3 = colLeft.polygon[0] - colLeft.polygon[3]
@@ -126,6 +131,7 @@ func calculate_turn_on_procedure():
 	var frame_count = animatedSprite.get_sprite_frames().get_frame_count("turnon")
 	 
 	turn_on_frame_time = 1 / speed
+	turnOnTimer.set_wait_time(turn_on_frame_time)
 	
 	var leftDiff2 = colLeft.polygon[2] - colLeft.polygon[1]
 	var leftDiff3 = colLeft.polygon[3] - colLeft.polygon[0]

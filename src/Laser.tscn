@@ -25,19 +25,18 @@ animations = [ {
 "name": "on",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 6 ) ],
-"loop": false,
-"name": "turnon",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 6 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 11 ) ],
 "loop": false,
 "name": "turnoff",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "turnon",
+"speed": 10.0
 } ]
 
 [node name="Laser" type="Area2D"]
-position = Vector2( 52, 74 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -46,11 +45,19 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "on"
-frame = 3
+frame = 6
 playing = true
 
-[node name="Timer" type="Timer" parent="."]
+[node name="ActivationTimer" type="Timer" parent="."]
 wait_time = 2.0
+one_shot = true
+
+[node name="TurnOnTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="TurnOffTimer" type="Timer" parent="."]
+wait_time = 0.1
 one_shot = true
 
 [node name="Laser" type="AudioStreamPlayer" parent="."]
@@ -63,5 +70,5 @@ polygon = PoolVector2Array( -2, -62, 2, -62, 2, 0, -2, 0 )
 polygon = PoolVector2Array( -2, 62, 2, 62, 2, 0, -2, 0 )
 [connection signal="body_entered" from="." to="." method="_on_Laser_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="ActivationTimer" to="." method="_on_Timer_timeout"]
 [connection signal="finished" from="Laser" to="." method="_on_Laser_finished"]
