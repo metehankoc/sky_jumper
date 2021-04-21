@@ -1,6 +1,7 @@
 extends Area2D
 
 export(float) var activation_time = 2
+export(String, "On", "Off") var start_state
 
 var stop = false
 
@@ -12,7 +13,7 @@ var turn_off_frame_time
 var turn_off_left_trajectory = []
 var turn_off_right_trajectory = []
 
-var active = true
+var active
 
 onready var animatedSprite = $AnimatedSprite
 onready var laserSound = $Laser
@@ -25,6 +26,12 @@ onready var colRight = $CollisionRight
 func _ready():
 	calculate_turn_off_procedure()
 	calculate_turn_on_procedure()
+	
+	if start_state == "On":
+		active = true
+	else:
+		active = false
+		animatedSprite.play("off")
 	activationTimer.set_wait_time( activation_time)
 	activationTimer.start()
 
