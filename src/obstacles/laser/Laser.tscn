@@ -13,8 +13,6 @@
 [ext_resource path="res://src/obstacles/laser/assets/LAZERYENI6.png" type="Texture" id=11]
 [ext_resource path="res://assets/musics/laser.wav" type="AudioStream" id=12]
 
-
-
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 11 ) ],
@@ -47,7 +45,7 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "on"
-frame = 6
+frame = 2
 playing = true
 
 [node name="ActivationTimer" type="Timer" parent="."]
