@@ -1,14 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/obstacles/enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://src/obstacles/enemy/assets/enemyflyinghorizontal 1.png" type="Texture" id=2]
-[ext_resource path="res://assets/musics/die.wav" type="AudioStream" id=3]
 [ext_resource path="res://src/obstacles/enemy/assets/enemyflyinghorizontal 2.png" type="Texture" id=4]
 [ext_resource path="res://src/obstacles/enemy/assets/enemyflyinghorizontal 3.png" type="Texture" id=5]
 [ext_resource path="res://src/obstacles/enemy/assets/enemyflyinghorizontal 4.png" type="Texture" id=6]
 [ext_resource path="res://src/obstacles/enemy/assets/enemyflyinghorizontal 5.png" type="Texture" id=7]
-
-
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -32,7 +29,6 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-frame = 4
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -45,8 +41,4 @@ shape = SubResource( 2 )
 modulate = Color( 1, 0.0196078, 0.0901961, 1 )
 self_modulate = Color( 1, 0, 0, 1 )
 shape = SubResource( 3 )
-
-[node name="Die" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]
-[connection signal="finished" from="Die" to="." method="_on_Die_finished"]

@@ -1,12 +1,11 @@
 extends KinematicBody2D
 
-export(int) var height = 140
-export var moving_down = false
-export(int, "Top", "Middle", "Bottom") var start_point
+export(int) var height = 128
+export var moving_left = false
+export(int, "Left", "Middle", "Right") var start_point
 
 
 onready var collision_shape = $CollisionShape2D
-onready var dieSound = $Die
 onready var animated_sprite = $AnimatedSprite
 
 const MAX_SPEED = 80
@@ -32,14 +31,15 @@ func _ready():
 
 
 func _physics_process(delta):
-	if moving_down:
+	if moving_left:
 		motion.x = min(motion.x + ACCELERATION, MAX_SPEED)
 	else:
 		motion.x = max(motion.x - ACCELERATION, -MAX_SPEED)
 	
 	if _is_on_edge():
-		moving_down = !moving_down
-		animated_sprite.flip_v = moving_down
+		# maybe add turn animation
+		moving_left = !moving_left
+		animated_sprite.flip_v = moving_left
 	
 	move_and_slide(motion)
 
@@ -54,10 +54,6 @@ func _is_on_edge():
 		return true
 	return false
 
+
 func _on_PlayerDetector_body_entered(body):
-	Events.emit_signal("player_stopped")
-	dieSound.play()
-
-
-func _on_Die_finished():
 	Events.emit_signal("player_killed")
