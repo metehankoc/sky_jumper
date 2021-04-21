@@ -5,7 +5,7 @@ onready var animatedSprite = owner.get_node("AnimatedSprite")
 func _enter():
 	owner.move_and_slide(Vector2(0,0))
 	animatedSprite.stop()
-	owner.play_die_sound()
+	
 
 
 func _exit():

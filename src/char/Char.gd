@@ -118,8 +118,8 @@ func _on_player_stopped():
 
 
 func _on_player_killed():
-	if current_state != states["stop"]: #?
-		_change_state("dead")
+	play_die_sound()	
+	_change_state("dead")
 
 
 func _on_Die_sound_finished():
