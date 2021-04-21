@@ -21,8 +21,8 @@ _global_script_class_icons={
 [application]
 
 config/name="Sky Jumper"
-run/main_scene="res://src/LevelTest.tscn"
-config/icon="res://assets/titlescreen2.png"
+run/main_scene="res://src/map/LevelTest.tscn"
+config/icon="res://src/menu/assets/titlescreen2.png"
 
 [audio]
 

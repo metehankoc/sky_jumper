@@ -1,0 +1,83 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/fonts/monogram_dynamicfont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/map/teleport/Exit.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/map/jumpLocation/JumpLocation.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/char/Char.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/map/Map.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/old/Bayrak.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/background/Background.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/coin/Coin.tscn" type="PackedScene" id=8]
+
+
+
+
+
+
+
+
+[node name="Level5Post" type="Node2D"]
+
+[node name="Char" parent="." instance=ExtResource( 4 )]
+position = Vector2( 88, 72 )
+
+[node name="Map" parent="." instance=ExtResource( 5 )]
+tile_data = PoolIntArray( 65544, 0, 0, 65545, 0, 1, 65546, 0, 2, 65559, 0, 0, 65560, 0, 1, 65561, 0, 2, 196607, 1, 0, 131072, 1, 2, 131080, 0, 131072, 131081, 0, 131073, 131082, 0, 131074, 131086, 1, 0, 131087, 1, 2, 131095, 0, 131072, 131096, 0, 131073, 131097, 0, 131074, 131101, 1, 0, 131102, 1, 2, 262143, 1, 131072, 196608, 1, 131074, 196612, 1, 0, 196613, 1, 1, 196614, 1, 2, 196622, 1, 131072, 196623, 1, 131074, 196627, 1, 0, 196628, 1, 1, 196629, 1, 2, 196637, 1, 131072, 196638, 1, 131074, 262148, 1, 65536, 262149, 1, 65537, 262150, 1, 65538, 262163, 1, 65536, 262164, 1, 65537, 262165, 1, 65538, 327684, 1, 131072, 327685, 1, 131073, 327686, 1, 131074, 327699, 1, 131072, 327700, 1, 131073, 327701, 1, 131074, 393226, 1, 0, 393227, 1, 1, 393228, 1, 2, 393241, 1, 0, 393242, 1, 1, 393243, 1, 2, 458762, 1, 131072, 458763, 1, 131073, 458764, 1, 131074, 458777, 1, 131072, 458778, 1, 131073, 458779, 1, 131074 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 128.0
+margin_top = 16.0
+margin_right = 192.0
+margin_bottom = 59.0
+rect_scale = Vector2( 0.75, 0.75 )
+custom_fonts/font = ExtResource( 1 )
+text = "Loop 6
+will beg-"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 368.0
+margin_top = 16.0
+margin_right = 432.0
+margin_bottom = 59.0
+rect_scale = Vector2( 0.75, 0.75 )
+custom_fonts/font = ExtResource( 1 )
+text = "-in..."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="JumpLocation" parent="Node2D" instance=ExtResource( 3 )]
+position = Vector2( 184, 112 )
+
+[node name="JumpLocation2" parent="Node2D" instance=ExtResource( 3 )]
+position = Vector2( 240, 48 )
+
+[node name="JumpLocation3" parent="Node2D" instance=ExtResource( 3 )]
+position = Vector2( 328, 72 )
+
+[node name="Exit" parent="." instance=ExtResource( 2 )]
+position = Vector2( 336, 72 )
+next_scene = "res://src/Level6.tscn"
+
+[node name="Bayrak" parent="." instance=ExtResource( 6 )]
+position = Vector2( 40, 72 )
+
+[node name="Bayrak2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 280, 72 )
+
+[node name="Background" parent="." instance=ExtResource( 7 )]
+
+[node name="Coin" parent="." instance=ExtResource( 8 )]
+position = Vector2( 184, 112 )
+
+[node name="Coin2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 240, 48 )

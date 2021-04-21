@@ -1,0 +1,146 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/menu/assets/buttonlevelselect.png" type="Texture" id=1]
+[ext_resource path="res://assets/musics/button.wav" type="AudioStream" id=2]
+[ext_resource path="res://src/menu/LevelSelect.gd" type="Script" id=3]
+[ext_resource path="res://src/menu/assets/level select.png" type="Texture" id=4]
+[ext_resource path="res://src/menu/assets/backbutton2.png" type="Texture" id=5]
+[ext_resource path="res://src/menu/assets/backbutton1.png" type="Texture" id=6]
+[ext_resource path="res://src/background/Background.tscn" type="PackedScene" id=7]
+
+
+
+
+
+[node name="LevelSelect" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+level_1 = "res://src/levels/Level1.tscn"
+level_2 = "res://src/levels/Level2.tscn"
+level_3 = "res://src/levels/Level3.tscn"
+level_4 = "res://src/levels/Level4.tscn"
+level_5 = "res://src/levels/Level5.tscn"
+level_6 = "res://src/levels/Level6.tscn"
+level_7 = "res://src/levels/Level7.tscn"
+level_8 = "res://src/levels/Level8.tscn"
+home = "res://src/Menu.tscn"
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 128, 72 )
+texture = ExtResource( 4 )
+
+[node name="Level1" type="TextureButton" parent="."]
+margin_left = 49.0
+margin_top = 56.6031
+margin_right = 81.0
+margin_bottom = 82.6031
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level2" type="TextureButton" parent="."]
+margin_left = 91.0
+margin_top = 57.0
+margin_right = 123.0
+margin_bottom = 85.0
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level3" type="TextureButton" parent="."]
+margin_left = 133.0
+margin_top = 57.0
+margin_right = 165.0
+margin_bottom = 85.0
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level4" type="TextureButton" parent="."]
+margin_left = 175.0
+margin_top = 57.0
+margin_right = 207.0
+margin_bottom = 85.0
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level5" type="TextureButton" parent="."]
+margin_left = 49.0
+margin_top = 93.0
+margin_right = 81.0
+margin_bottom = 121.0
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level6" type="TextureButton" parent="."]
+margin_left = 91.0
+margin_top = 93.0
+margin_right = 123.0
+margin_bottom = 121.0
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level7" type="TextureButton" parent="."]
+margin_left = 133.0
+margin_top = 93.0
+margin_right = 165.0
+margin_bottom = 121.0
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level8" type="TextureButton" parent="."]
+margin_left = 175.0
+margin_top = 93.0
+margin_right = 207.0
+margin_bottom = 121.0
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -20.0
+
+[node name="BackButton" type="TextureButton" parent="."]
+margin_left = 211.0
+margin_top = 128.0
+margin_right = 253.0
+margin_bottom = 142.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+
+[node name="Background" parent="." instance=ExtResource( 7 )]
+[connection signal="pressed" from="Level1" to="." method="_on_Level1_pressed"]
+[connection signal="pressed" from="Level2" to="." method="_on_Level2_pressed"]
+[connection signal="pressed" from="Level3" to="." method="_on_Level3_pressed"]
+[connection signal="pressed" from="Level4" to="." method="_on_Level4_pressed"]
+[connection signal="pressed" from="Level5" to="." method="_on_Level5_pressed"]
+[connection signal="pressed" from="Level6" to="." method="_on_Level6_pressed"]
+[connection signal="pressed" from="Level7" to="." method="_on_Level7_pressed"]
+[connection signal="pressed" from="Level8" to="." method="_on_Level8_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

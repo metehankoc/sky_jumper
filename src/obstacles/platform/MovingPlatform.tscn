@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/obstacles/platform/MovingPlatform.gd" type="Script" id=1]
+[ext_resource path="res://assets/musics/die.wav" type="AudioStream" id=2]
+[ext_resource path="res://src/obstacles/platform/assets/platform.png" type="Texture" id=3]
+
+
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 0 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16, 4 )
+
+[node name="MovingPlatform" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Platform" type="KinematicBody2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Platform"]
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="Platform"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/Area2D"]
+shape = SubResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
+repeat = true
+playback/repeat = true
+
+[node name="Die" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+[connection signal="body_entered" from="Platform/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="finished" from="Die" to="." method="_on_Die_finished"]
