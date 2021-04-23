@@ -1,0 +1,19 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/map/infinite/Infinite.gd" type="Script" id=1]
+[ext_resource path="res://src/map/jumpLocation/JumpLocation.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/map/Map.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/obstacles/laser/Laser.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/obstacles/spitter/Spawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/obstacles/platform/MovingPlatform.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/obstacles/enemy/Enemy.tscn" type="PackedScene" id=7]
+
+[node name="Infinite" type="Node2D"]
+script = ExtResource( 1 )
+Jump_Location = ExtResource( 2 )
+Enemy = ExtResource( 7 )
+Spitter = ExtResource( 5 )
+Laser = ExtResource( 4 )
+Platform = ExtResource( 6 )
+
+[node name="Map" parent="." instance=ExtResource( 3 )]
