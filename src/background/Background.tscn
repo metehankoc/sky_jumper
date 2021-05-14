@@ -5,9 +5,6 @@
 [ext_resource path="res://src/background/assets/back2.png" type="Texture" id=3]
 [ext_resource path="res://src/background/assets/back3.png" type="Texture" id=4]
 
-
-
-
 [node name="Background" type="ParallaxBackground"]
 script = ExtResource( 1 )
 
@@ -22,6 +19,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 1024, 576 )
 
 [node name="ParallaxLayerMid" type="ParallaxLayer" parent="."]
+visible = false
 motion_scale = Vector2( 0.2, 0.2 )
 motion_mirroring = Vector2( 1024, 576 )
 
@@ -32,6 +30,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 1024, 576 )
 
 [node name="ParallaxLayerFront" type="ParallaxLayer" parent="."]
+visible = false
 motion_scale = Vector2( 0.1, 0.1 )
 motion_mirroring = Vector2( 1024, 576 )
 

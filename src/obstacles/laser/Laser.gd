@@ -1,7 +1,7 @@
 extends Area2D
 
 export(float) var activation_time = 2
-export(String, "On", "Off") var start_state
+export(String, "On", "Off") var start_state = "On"
 
 var stop = false
 
@@ -32,6 +32,8 @@ func _ready():
 	else:
 		active = false
 		animatedSprite.play("off")
+		colLeft.polygon = turn_off_left_trajectory[turn_off_left_trajectory.size()-1]
+		colRight.polygon = turn_off_right_trajectory[turn_off_right_trajectory.size()-1]
 	activationTimer.set_wait_time( activation_time)
 	activationTimer.start()
 
